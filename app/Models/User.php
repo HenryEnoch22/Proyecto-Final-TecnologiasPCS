@@ -25,19 +25,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'last_name',
-        'mother_last_name',
         'email',
         'password',
-        'profile_photo_path',
-        'created_at',
-        'updated_at',
-        'created_by',
-        'updated_by',
-        'deleted_by'
     ];
-
-    public $timestamps = true;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -68,9 +58,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id');
-    }
 }
