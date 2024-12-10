@@ -12,7 +12,7 @@ class Group extends Model
     use SoftDeletes;
 
     public $timestamps = true;
-    protected $table = 'group';
+    protected $table = 'groups';
     public $fillable = ['id','educational_experience_id','student_id','shift','period','student_grade'];
-    
+
 }

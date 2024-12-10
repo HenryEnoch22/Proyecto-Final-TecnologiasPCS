@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\EducationalExperienceController;
-use App\Http\Controllers\GroupControlller;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ use App\Http\Controllers\GroupControlller;
 Route::middleware('auth:sanctum')->group(function (){
 
 });
-Route::resource('experiencia-educativa', EducationalExperienceController::class);
-Route::resource('grupo', GroupControlller::class);
+Route::resource('experiencia-educativas', EducationalExperienceController::class);
+Route::resource('grupos', GroupController::class);
+Route::resource('usuarios', UserController::class);
 
 

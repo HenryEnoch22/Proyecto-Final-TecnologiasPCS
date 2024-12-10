@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller;
 
 use App\Models\Group;
 
-class GroupControlller extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -101,7 +101,7 @@ class GroupControlller extends Controller
         ],201);
 
 
-        
+
     }
 
     public function assignGrade(Request $grade, $groupRequested){
