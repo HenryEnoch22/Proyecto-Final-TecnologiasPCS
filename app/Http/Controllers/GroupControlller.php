@@ -33,23 +33,21 @@ class GroupControlller extends Controller
         $request->validate([
             'id' => 'required|numeric'
             ,'educational_experience_id' => 'required|numeric'
-            ,'student_id' => 'required|numeric'
-            ,'shift' => 'required|string|max:5'
+            ,'teacher_id' => 'required|numeric'
+            ,'shift' => 'required|string|max:12'
             ,'period' => 'required|string|max:45'
-            ,'student_grade' => 'nullable|numeric'
         ]);
 
         $group = Group::create([
             'id' => $request->id
             ,'educational_experience_id' => $request->educational_experience_id
-            ,'student_id' => $request->student_id
+            ,'teacher_id' => $request->student_id
             ,'shift' => $request->shift
             ,'period' => $request->period
-            ,'student_grade' => $request->student_grade
         ]);
 
         return response()->json([
-            'message' => 'Alumno registrado en el grupo exitosamente'
+            'message' => 'Grupo creado exitosamente'
             ,'data' => $group
         ],201);
     }
@@ -57,9 +55,10 @@ class GroupControlller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($group)
     {
-        //
+        $groupShowed = Group::findOrFail($group);
+        return response()->json(['data' => $groupShowed], 201);
     }
 
     /**
@@ -79,44 +78,27 @@ class GroupControlller extends Controller
         $request->validate([
             'id' => 'required|numeric'
             ,'educational_experience_id' => 'required|numeric'
-            ,'student_id' => 'required|numeric'
-            ,'shift' => 'required|string|max:5'
+            ,'teacher_id' => 'required|numeric'
+            ,'shift' => 'required|string|max:12'
             ,'period' => 'required|string|max:45'
-            ,'student_grade' => 'nullable|numeric'
         ]);
 
         $group->update([
             'id' => $request->id
             ,'educational_experience_id' => $request->educational_experience_id
-            ,'student_id' => $request->student_id
+            ,'student_id' => $request->teacher_id
             ,'shift' => $request->shift
             ,'period' => $request->period
-            ,'student_grade' => $request->student_grade
         ]);
 
 
         return response()->json([
-            'message' => 'Se ha editado el registro del alumno en el curso'
+            'message' => 'Se ha editado el grupo'
             ,'data' => $group
         ],201);
 
 
         
-    }
-
-    public function assignGrade(Request $grade, $groupRequested){
-        $group = Group::findOrFail($groupRequested);
-        $grade->validate([
-            'grade' => 'required|numeric'
-        ]);
-
-        $group->update(['student_grade' => $grade->grade]);
-
-        return response()->json([
-            'message' => 'Se ha asignado la calificacion al alumno elegido'
-            ,'data' => $group
-        ],201);
-
     }
 
     /**
@@ -128,7 +110,7 @@ class GroupControlller extends Controller
         $group->delete();
 
         return response()->json([
-            'message' => 'Se ha dado de baja al alumno del grupo'
+            'message' => 'Se ha eliminado el grupo'
             ,'data' => $group
         ],201);
     }

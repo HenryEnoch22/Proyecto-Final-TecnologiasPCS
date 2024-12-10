@@ -35,6 +35,16 @@ class UserSeeder extends Seeder
                 'email' => 'emiliogay@gmail.com',
                 'password' => Hash::make('12345678')
             ],
+            [
+                'id' => 3,
+                'role_id' => 1,
+                'matricula' => 'S22017007',
+                'name' => 'SEBASTIAN DE JESUS',
+                'last_name' => 'HERNANDEZ',
+                'mother_last_name' => 'MONTERO',
+                'email' => 'sebati@gmail.com',
+                'password' => Hash::make('12345678')
+            ],
         ]);
     }
 }

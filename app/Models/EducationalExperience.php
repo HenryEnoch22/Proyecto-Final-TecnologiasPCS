@@ -11,7 +11,7 @@ class EducationalExperience extends Model
     use HasFactory;
     use SoftDeletes;
     public $timestamps = true;
-    protected $table = 'educational_experience';
+    protected $table = 'educational_experiences';
     protected $fillable = ['teacher_id', 'nrc', 'name', 'modality', 'description', 'created_at', 'updated_at', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'];
 
 }
