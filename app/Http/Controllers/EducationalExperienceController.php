@@ -59,9 +59,12 @@ class EducationalExperienceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($educationalExperience)
     {
-        //
+        $educationalExp = EducationalExperience::findOrFail($educationalExperience);
+        return response()->json([
+            'data' => $educationalExp
+        ], 201);
     }
 
     /**
