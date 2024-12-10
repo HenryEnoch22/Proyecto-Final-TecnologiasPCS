@@ -1,10 +1,39 @@
 <!-- pages/Login/index.vue -->
 <script>
 import axios from 'axios'
-import LoginCard from "../../components/LoginCard/LoginCard.vue";
+import LoginCard from "../../components/LoginCard/LoginCard.vue"
 
 export default {
     components: {LoginCard},
+    data() {
+        return {
+            form: {
+                email: '',
+                password: '',
+                remember: false
+            },
+            processing: false,
+            error: null
+        }
+    },
+    methods: {
+        async handleLogin() {
+            this.processing = true
+            this.error = null
+
+            try {
+                // await axios.post('/sanctum/csrf-cookie').then(() => {
+                // })
+                await axios.post('/login', this.form)
+                // window.location.href = '/'
+                this.$router.push('/')
+            } catch (error) {
+                this.error = error.response?.data?.message || 'Error al iniciar sesión'
+            } finally {
+                this.processing = false
+            }
+        }
+    }
 }
 </script>
 

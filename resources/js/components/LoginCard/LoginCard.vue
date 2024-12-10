@@ -22,11 +22,11 @@ export default {
             this.error = null
 
             try {
-                await axios.post('/sanctum/csrf-cookie').then(() => {
-                    axios.post('/login', this.form)
-                })
-                window.location.href = '/'
-                // this.$router.push('/')
+                // await axios.post('/sanctum/csrf-cookie').then(() => {
+                // })
+                await axios.post('/login', this.form)
+                // window.location.href = '/'
+                this.$router.push('/')
             } catch (error) {
                 this.error = error.response?.data?.message || 'Error al iniciar sesión'
             } finally {
@@ -45,9 +45,13 @@ export default {
                 <h2 class="mb-0">Inicia sesión :)</h2>
             </div>
 
-            <div v-if="error" class="mb-4 text-sm text-red-600">
+            <div v-if="error" class=" error-container mb-4 text-sm text-red-600">
                 {{ error }}
             </div>
+
+<!--            <input placeholder="Correo" type="email" name="email">
+            <input placeholder="*********" type="password" name="password">
+            <button type="submit">Enviar</button>-->
 
             <div class="mb-3">
                 <input-component
@@ -72,7 +76,6 @@ export default {
                 type-button="submit"
                 text="Iniciar sesión"
                 class="w-100"
-                @click="$router.push('/')"
             />
 
         </div>
@@ -85,5 +88,13 @@ export default {
     max-width: 500px;
     border-radius: 1rem;
     border: none;
+}
+
+.error-container {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 1rem;
+    border: none;
+    color: red;
 }
 </style>
